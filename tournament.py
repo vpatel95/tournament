@@ -81,7 +81,6 @@ def countPlayers(tournament='blnk'):
         query = "SELECT count(*) FROM players WHERE id != 0"
         db_cursor.execute(query)
         rows = db_cursor.fetchone()
-<<<<<<< HEAD:tournament/tournament.py
         print '==>  ' + str(rows[0]) + ' players are registered for '\
               'all tournaments.'
     else:
@@ -91,17 +90,6 @@ def countPlayers(tournament='blnk'):
         rows = db_cursor.fetchone()
         print '==>  ' + str(rows[0]) + ' players are registered '\
               'for tournament ' + tournament + '.'
-=======
-        print '==>  ' + str(rows[0]) + ' players are registered for '
-        'all tournaments.'
-    else:
-        query = "SELECT count(*) FROM players WHERE tournament"
-        " = %s AND id != 0"
-        db_cursor.execute(query, (tournament,))
-        rows = db_cursor.fetchone()
-        print '==>  ' + str(rows[0]) + ' players are registered '
-        'for tournament ' + tournament + '.'
->>>>>>> e8560216394549a828426fdd36b901cd05c59830:tournament.py
     db.commit()
     db.close()
     return rows[0]
@@ -130,15 +118,9 @@ def registerPlayer(tournament, name):
             # If error from duplicate id is thrown, roll back changes.
             db.rollback()
     else:
-<<<<<<< HEAD:tournament/tournament.py
         print 'We tried 100 times to enter register the player '\
               'and a unique id could not be assigned.  Run registerPlayer'\
               '(tournament) again to try 100 more times.'
-=======
-        print 'We tried 100 times to enter register the player '
-        'and a unique id could not be assigned.  Run registerPlayer'
-        '(tournament) again to try 100 more times.'
->>>>>>> e8560216394549a828426fdd36b901cd05c59830:tournament.py
     print '==>  ' + name + ' has been registered for tournament: ' + tournament
     db.commit()
     db.close()
@@ -177,7 +159,6 @@ def reportMatch(tournament, playerID, opponent, result):
     """
     db = connect()
     db_cursor = db.cursor()
-<<<<<<< HEAD:tournament/tournament.py
     query = "INSERT INTO matches (tournament, player_id, opponent_id, result)"\
             " VALUES (%s, %s, %s, %s)"
     db_cursor.execute(query, (tournament, playerID, opponent, result))
@@ -203,30 +184,6 @@ def reportMatch(tournament, playerID, opponent, result):
                   ' \n ====>  Opponent ID: %s \n ====>  Tournament: %s \n '\
                   '====>  Result: tie' % (str(opponent),
                                           str(playerID), tournament)
-=======
-    query = "INSERT INTO matches (tournament, player_id, opponent_id, result)"
-    " VALUES (%s, %s, %s, %s)"
-    db_cursor.execute(query, (tournament, playerID, opponent, result))
-    print '==>  Match recorded successfully. \n ====>  Player ID: %s \n ====>'
-    '  Opponent ID: %s \n ====>  Tournament: %s \n ====>  Result:'
-    ' %s' % (str(playerID), str(opponent), tournament, result)
-    if opponent != 0:
-        if result == 'win':
-            db_cursor.execute(query, (tournament, opponent, playerID, 'lose'))
-            print '==>  Match recorded successfully. \n ====>  Player ID: %s'
-            ' \n ====>  Opponent ID: %s \n ====>  Tournament: %s \n ====> '
-            ' Result: lose' % (str(opponent), str(playerID), tournament)
-        elif result == 'lose':
-            print '==>  Match recorded successfully. \n ====>  Player ID: %s'
-            ' \n ====>  Opponent ID: %s \n ====>  Tournament: %s \n ====> '
-            ' Result: win' % (str(opponent), str(playerID), tournament)
-            db_cursor.execute(query, (tournament, opponent, playerID, 'win'))
-        else:
-            db_cursor.execute(query, (tournament, opponent, playerID, 'tie'))
-            print '==>  Match recorded successfully. \n ====>  Player ID: %s'
-            ' \n ====>  Opponent ID: %s \n ====>  Tournament: %s \n ====>  '
-            'Result: tie' % (str(opponent), str(playerID), tournament)
->>>>>>> e8560216394549a828426fdd36b901cd05c59830:tournament.py
     db.commit()
     db.close()
 
@@ -334,13 +291,8 @@ def swissPairings(tournament='blnk'):
             players = [x for x in players if x not in (player, opponent)]
             countOfPlayers = len(players)
         except:
-<<<<<<< HEAD:tournament/tournament.py
             print str(player) + ' has played all opponents in '\
                    'Tournament: ' + tournament
-=======
-            print str(player) + ' has played all opponents in '
-            'Tournament: ' + tournament
->>>>>>> e8560216394549a828426fdd36b901cd05c59830:tournament.py
             print 'Aborting swissPairings().'
             break
     db.rollback()
