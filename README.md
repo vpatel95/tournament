@@ -1,5 +1,5 @@
 # tournament
-A project based on implementation of Relational Database. Objective is to create an application using Python and PSQL that could effectively conduct a Swiss Style Tournament
+A project to implement Relational Database using python. Objective is to create an application using Python and PSQL that could effectively conduct a Swiss Style Tournament
 
 ##Files
 | File | Description |
