@@ -15,7 +15,7 @@ A project to implement Relational Database using python. Objective is to create 
 3. vagrant
 4. git
 
-####Installation Steps:
+#### Installation Steps:
 1. Open terminal
 2. Change to the desired parent directory
   - Example: `cd Desktop/`
